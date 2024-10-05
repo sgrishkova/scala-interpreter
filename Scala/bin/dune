@@ -1,0 +1,4 @@
+(executable
+ (public_name Scala)
+ (name main)
+ (libraries Scala))
