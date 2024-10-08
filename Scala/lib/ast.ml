@@ -1,12 +1,20 @@
-type indent = Indent of string [@@deriving show { with_path = false }]
+type indent = string [@@deriving show { with_path = false }]
+
+type types = 
+  |TNone 
+  |TAny
+  |TAnyVal
+  |TBoolean
+  |TInt
+  |TString
+  |TUnit
+[@@deriving show { with_path = false }]
 
 type const = 
-  |Any
-  |Int of int
-  |Boolean of bool 
-  |Char of char 
-  |String of string 
-  |Unit
+  |C_int of int
+  |C_bool of bool
+  |C_string of string
+
 [@@deriving show { with_path = false }]
 
 type bin_op =
@@ -26,10 +34,9 @@ type bin_op =
 
 type pat = 
   |Pat_any 
-  |Pat_const of const
+  |Pat_const of types
   |Pat_var of indent
   |Pat_turple of pat * pat * pat list
-  |Pat_list of pat list
   |Pat_cons of pat * pat
 
 [@@deriving show { with_path = false }]
@@ -37,19 +44,21 @@ type pat =
 type expression = 
   |Ex_ident of indent
   |Ex_const of const
-  |Ex_bin of bin_op * expression * expression
+  |Ex_bin of expression * bin_op * expression
   |Ex_tuple of expression * expression * expression list
   |Ex_list of expression list
   |Ex_ifelse of expression * expression * expression option
   |Ex_cons of expression * expression
-  |Ex_fun of string option * func
+  |Ex_apply of expression * expression
+  |Ex_return of expression
 
-and func = {
-  arg : (indent * const) list;
-  
-}
+and a_func = 
+  {
+  arg : (indent * types) list
+  ; return_type : types
+  ; body : expression list
+  }
 [@@deriving show { with_path = false }]
 
-type sc_class=
-  |
+type func = indent * a_func [@@deriving show { with_path = false }]
 
