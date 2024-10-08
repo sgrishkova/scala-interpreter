@@ -1,26 +1,35 @@
-(lang dune 3.16)
-
-(name Scala)
+(lang dune 3.7)
 
 (generate_opam_files true)
 
-(source
- (github username/reponame))
+(cram enable)
 
-(authors "Author Name")
+(license LGPL-3.0-or-later)
 
-(maintainers "Maintainer Name")
+(authors "Sofya Grishkova <sofagriskova1@gmail.com>" "Yuliana Ementyan <ementyan.yuliana@gmail.com>")
 
-(license LICENSE)
+(maintainers "Sofya Grishkova <sofagriskova1@gmail.com>" "Yuliana Ementyan <ementyan.yuliana@gmail.com>")
 
-(documentation https://url/to/documentation)
+(bug_reports "https://github.com/Kakadu/fp2024")
+
+(homepage "https://github.com/Kakadu/fp2024")
 
 (package
  (name Scala)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml dune)
- (tags
-  (topics "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
+ (synopsis "An interpreter for Scala language, with support for By-name Parameters.")
+ (description
+  "An interpreter for Scala language, with support for By-name Parameters.")
+ (documentation "https://kakadu.github.io/fp2024/docs/Scala")
+ (version 0.1)
+ (depends
+  dune
+  angstrom
+  (ppx_inline_test :with-test)
+  ppx_expect
+  ppx_deriving
+  bisect_ppx
+  (odoc :with-doc)
+  (ocamlformat :build)
+  )
+  
+)
