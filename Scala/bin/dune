@@ -1,4 +1,6 @@
 (executable
  (public_name Scala)
  (name main)
- (libraries Scala))
+ (libraries Scala)
+ (instrumentation
+  (backend bisect_ppx)))

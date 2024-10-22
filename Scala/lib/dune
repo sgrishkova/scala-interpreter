@@ -1,2 +1,9 @@
 (library
- (name Scala))
+ (name Scala)
+ (public_name Scala.Ast)
+ (libraries angstrom)
+ (preprocess
+  (pps ppx_deriving.show))
+ (instrumentation
+  (backend bisect_ppx)))
+
